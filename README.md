@@ -1,5 +1,6 @@
 # MatrixCalculator207 [1.0] 
 A matrix calculator using an Arduino mega and a TFT touchscreen :grinning: 
+
 # About
 
 The project is a touchscreen caclulator for matrixes. The project consists only of a tft touchscreen connected to an arduino mega. 
@@ -23,7 +24,7 @@ The software invloves:
 * Software (The code)
    * Explaining the code
    * How it works
-     * Display
+     * Display-> [settings.h,how to,main] 
      * Touch Functions
      * Calculation
    * Notes/Extras
@@ -107,7 +108,7 @@ The project has four files/parts that are used for specific functions <br>
 ### Display 
 In settings.h I included libraries for the touchscreen and I defined macros for the colors, pins and pressure<br>
 
-
+#### settings.h
 Including libraries for using the touchscreen
 ``` java
 #include "Adafruit_GFX.h"   // Core graphics library
@@ -140,13 +141,85 @@ Defining colours That would be used and fonts
 #include "Fonts/FreeSerif12pt7b.h"
 #include "FreeDefaultFonts.h"
 ``` 
+global variables used
+``` java
+int pixel_x, pixel_y;
+bool ON_OFF=1;  
+int buttonsStructAmount = 4;
+String textFieldText = "";
+```
+This struct is used to store the x and y location, the text and a button<br>
+This is what is used to define each button
+``` java
+struct buttonsStruct {
+  int x, y;
+  Adafruit_GFX_Button button;
+  String text;
+};
+```
+Array that stores the text for the keypad buttons
+``` java
+char *keypadText[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "x","CLR", "=", "2x2", "3x3", "4x4"};
+```
+Creating buttons for the keypad and matrix cells and storing them in an array
+``` java
+//Keypad Buttons
+buttonsStruct button1, button2, button3, button4, button5, button6, button7, button8, button9, button_plus, button_minus, button_multiplication, button_harmadad, button_Clr,buttonEquals, buttonMatrix2, buttonMatrix3, buttonMatrix4;
+buttonsStruct keypadButtonArray[] = {button1, button2, button3, button4, button5, button6, button7, button8, button9};
+buttonsStruct specialButtonArray[] = {button_plus, button_minus, button_multiplication, button_harmadad, button_Clr, buttonEquals, buttonMatrix2, buttonMatrix3, buttonMatrix4};
+//matrix Buttons
+buttonsStruct a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44;
+buttonsStruct b11, b12, b13, b14, b21, b22, b23, b24, b31, b32, b33, b34, b41, b42, b43, b44;
+buttonsStruct c11, c12, c13, c14, c21, c22, c23, c24, c31, c32, c33, c34, c41, c42, c43, c44;
+buttonsStruct matrixA[] = {a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44};
+buttonsStruct matrixB[] = {b11, b12, b13, b14, b21, b22, b23, b24, b31, b32, b33, b34, b41, b42, b43, b44};
+buttonsStruct matrixC[] = {c11, c12, c13, c14, c21, c22, c23, c24, c31, c32, c33, c34, c41, c42, c43, c44};
+```
+#### How to
+There some common code that I used throughout the project
+<div align="center"><strong>Drawing Lines</strong> </div><br>
 
 ``` java
+drawFastVLine(x,y,h,t); //draws a vertical line with the x and y location, the height and the color 
+drawFastHLine(x,y,w,t); //draws a Horizontal line with the x and y location, the height and the color 
 ```
+<div align="center"><strong>Drawing rectangles</strong> </div><br>
+
 ``` java
+fillRect(x,y,w,h,t); // draw the rectangle with the x and y location, the width,height and the color of the rectangle
+drawRect(x,y,w,h,t); // draw the outline of a rectangle with the x and y location, the width,height and the color of the outline
+
 ```
+<div align="center"><strong>Writing Texts</strong> </div><br>
+
+``` java
+setCursor(x, y);//sets the location of the text
+setTextSize(textSize);/sets the size of the texr
+setTextColor(t,b); // set the textcolor and the background color of a text
+println(" line text");//print the text on aline
+print("not line text");//print the text
+```
+<div align="center"><strong>Drawing Buttons</strong> </div><br>
+
+``` java
+initButton(gfx,	x, y,w,h,outline, fill,textcolor,*label,textsize_x,textsize_y);// initializes the button,the x and y location,the width,height and the color of the outline,color the button, the text of the button, and the text size
+drawButton(true);//draws the button
+```
+<div align="center"><strong>Clicking On Button</strong> </div><br>
+
+``` java
+contains(x,y); //checks if the x and y loaction are within the bounds of the button
+press();//sets wat triggers the button
+justPressed();//Checks if the button was just pressed
+```
+
 ### Touch
-
+``` java
+```
+``` java
+```
+``` java
+```
 ### Calculation
 
 ### Explaining the code
