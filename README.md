@@ -38,8 +38,9 @@ Even though a number of this files will be in this readme, I have still created 
 * **/img** - This is where the image files for this readme are! Yay!
 * **/LICENSE** - The license file.
 ## Preamble
-<p>In the project proposal, I identified my project as a modification to a normal calculator made with Arduino. In the proposal, I offered modifications that would make the calculator perform computations like matrixes and differential calculus. The original project was going to made using an LCD screen for the output and a keypad for the input. However, after discovering that touchscreens can also be used with Arduino the project took a turn. The project was going to be a hybrid of a touchscreen and a keypad (like a blackberry) where the touchscreen could be used to display the output and also have a few buttons for special commands.
-I purcahesed the wrong keypad. The keypad I'd gotten needed soldering to be connected to the Arduino but since I lack the skills and materials to achieve that the keypad was rendered mute. The modification that resulted from this was having to design a keypad on the touch screen. This shift of workload from only getting data from the keypad to designing one on a touchscreen and also getting data from it meant that more time had to be spent coding the interface rather than the logic of the calculations. This cutback meant that the original idea of being able to perform matrix and differential calculations was reduced to only matrix calculations </P>
+####Introduction
+<p>In the project proposal, I identified my project as a modification to a normal calculator made with Arduino. I got the inspiration from https://www.allaboutcircuits.com/projects/simple-arduino-based-calculator/ who made a calcultator using arduino. However, due to the modifications there is little resemblance to his idea, hardware or code. <br>In the proposal, I offered modifications that would make the calculator perform computations like matrixes and differential calculus. The original project was going to made using an LCD screen for the output and a keypad for the input. However, after discovering that touchscreens can also be used with Arduino the project took a turn. The project was going to be a hybrid of a touchscreen and a keypad (like a blackberry) where the touchscreen could be used to display the output and also have a few buttons for special commands.
+I purcahesed the wrong keypad. The keypad I'd gotten needed soldering to be connected to the Arduino but since I lack the skills and materials to achieve that the keypad was rendered mute. The modification that resulted from this was having to design a keypad on the touch screen. This shift of workload from only getting data from the keypad to designing one on a touchscreen and also getting data from it meant that more time had to be spent coding the interface rather than the logic of the calculations. This cutback meant that the original idea of being able to perform matrix and differential calculations was reduced to only matrix calculations.  </P>
 
 ## Hardware
 ### Materials and Links
@@ -84,14 +85,14 @@ To do that open the Arduino library manager and then search for Adafruit_TouchSc
 
 The documentation for the adafruit library can be found here: http://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x___button.html#a932228d686e6dec88b8b99d03fdb59a7 <br>
 This write up is a good reference for the MCUFRIEND_kbv library:  https://electropeak.com/learn/absolute-beginners-guide-to-tft-lcd-displays-by-arduino/ <br>
-
+All code was writing by me except from the function Touch_getXY(void). this was gotten from the  MCUFRIEND_kbv library examples.
 ## Software (The code)
-<p> The code was divided into three parts The first part involves designing the interface, the second part is getting an input from the user and the last part is calculating the result and then displaying it back</p>
+<p> I divided the workload for the code into three parts The first part involves designing the interface, the second part is getting an input from the user and the last part is calculating the result and then displaying it back</p>
 <p> The original plan was to use a physical keypad to get the input but the wrong keypad was delivered </p> 
-<p> Designing the interface involves some work arounds becaues the functions of the library used are reduced to only fdrawing buttons, shapes and lines. There are no text fields or inputs so I needed to create a work around for this </p>
+<p> Designing the interface involves some work arounds becaues the functions of the library used are reduced to only drawing buttons, shapes and lines. There are no text fields or inputs so I needed to create a work around for this </p>
 The project has four files/parts that are used for specific functions <br>
 
-* Igaveup (This was used for the design)<br>
+* main(This was used for the design)<br>
 * settings (This was used to define libraries used, macros, global variables and arrays,)<br>
 * Touchscreen (This was used to get were was clicked and the actions to be perfomed)<br>
 * logic (This was used to calculate the matrix functions)<br>
@@ -214,9 +215,40 @@ justPressed();//Checks if the button was just pressed
 ```
 
 ### Touch
+These two functions were used often throughout the code <br>
+<div align="center"><strong>writeText(String text, int textSize, int x, int y, bool isLine)</strong> </div><br>
+<p>This function when called takes in parameters for drawing a text like the x and y location the text size and wheter or not the text should be on aline or not. I decided to put all this in function because to write a text takes up a number lines so this functions simplifies that</p>
+
 ``` java
+//function takes in an x and y location, a string and bool and draws the text
+//the bool  signifies if it is a line text or not
+void writeText(String text, int textSize, int x, int y, bool isLine) {
+  tft.setCursor(x, y);//sets the location
+  tft.setTextSize(textSize);
+  if (isLine)
+    tft.println(text);
+  else
+    tft.print(text);
+}
 ```
+
+<div align="center"><strong>storeMatrixData(int x, int y, buttonsStruct* store, char * text, int colour)</strong> </div><br>
+<p>This function when called takes in parameters for drawing a text like the x and y location the text size and wheter or not the text should be on aline or not. I decided to put all this in function because to write a text takes up a number lines so this functions simplifies that</p>
+
 ``` java
+/* This function stores the data of the matrix cell and then displays it
+ its store the text, and then x and y location of the button
+ Except for the text, the x and y location are not neccesary in this version of the code but would be useful for future updates*/
+void storeMatrixData(int x, int y, buttonsStruct* store, char * text, int colour) {
+  //using pointers
+  //store the data
+  store->x = x ;
+  store->y = y ;
+  store->text = text;
+  //drawing the buttons
+  store->button.initButton(&tft, store->x,  store->y, 55, 30, WHITE, BLACK, colour, text, 2);
+  store->button.drawButton(true);
+}
 ```
 ``` java
 ```
