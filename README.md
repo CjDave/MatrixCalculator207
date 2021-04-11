@@ -38,7 +38,7 @@ Even though a number of this files will be in this readme, I have still created 
 * **/img** - This is where the image files for this readme are! Yay!
 * **/LICENSE** - The license file.
 ## Preamble
-####Introduction
+
 <p>In the project proposal, I identified my project as a modification to a normal calculator made with Arduino. I got the inspiration from https://www.allaboutcircuits.com/projects/simple-arduino-based-calculator/ who made a calcultator using arduino. However, due to the modifications there is little resemblance to his idea, hardware or code. <br>In the proposal, I offered modifications that would make the calculator perform computations like matrixes and differential calculus. The original project was going to made using an LCD screen for the output and a keypad for the input. However, after discovering that touchscreens can also be used with Arduino the project took a turn. The project was going to be a hybrid of a touchscreen and a keypad (like a blackberry) where the touchscreen could be used to display the output and also have a few buttons for special commands.
 I purcahesed the wrong keypad. The keypad I'd gotten needed soldering to be connected to the Arduino but since I lack the skills and materials to achieve that the keypad was rendered mute. The modification that resulted from this was having to design a keypad on the touch screen. This shift of workload from only getting data from the keypad to designing one on a touchscreen and also getting data from it meant that more time had to be spent coding the interface rather than the logic of the calculations. This cutback meant that the original idea of being able to perform matrix and differential calculations was reduced to only matrix calculations.  </P>
 
@@ -231,7 +231,6 @@ void writeText(String text, int textSize, int x, int y, bool isLine) {
     tft.print(text);
 }
 ```
-
 <div align="center"><strong>storeMatrixData(int x, int y, buttonsStruct* store, char * text, int colour)</strong> </div><br>
 <p>This function when called takes in parameters for drawing a button and stores its data in a struct. As explained earlier we are going to store the text of a button and its location along with the button itself in a struct. In this function we are going to pass in the struct by refernce and then store the values and initialize the button using a pointer. As with the first function this is done to avoid writing the same thing everytime as the procces is used often throughout the code. </p>
 
@@ -283,6 +282,45 @@ void keypadDesign() {
   }
 }
 ```
+<div align="center"><strong> buttonsStructDesign(int xLocation, int yLocation, int matrixNo, int location)</strong> </div><br>
+<p>This function is used too draw a single matrix cell. It takes in the information for the row and column that it is,which matrix it is being drawn to and its location in the array. It starts by setting the cordinates and the bounds for the cell next depending I used a switch so that  (1,2,3) represents matrix A,B, And the result and depending on which number is supplied int the parameter the matrix is drawn. All cases are similar they both display a text which is the heading of the matrix, then they call the storeMatrixData to darw to store and draw the button.The difference is in their y location and which matrix is sent in the parameters. Next a rectangle is drawn around the button to give it the matrix design </p>
+
+``` java
+//Design the cell of a matrix
+void buttonsStructDesign(int xLocation, int yLocation, int matrixNo, int location) {
+  //locations
+  int y; int x = 10;
+  int w = 50;//width
+  int h = 40;//height
+  char * text = "";
+  //Cell spacing
+  int cellOffset = 40;
+  int buttonOffset = 46;
+  tft.setTextColor(BLACK, WHITE);//subsequent text would be set to this color
+  switch (matrixNo) {
+    case 1://first matrix
+      writeText("A", 3, 100, 20, false ); //design for the matrix heading
+      y = 10;
+      storeMatrixData((x + (buttonOffset * xLocation)), (y + (buttonOffset * yLocation)), &matrixA[location], text, WHITE);
+      break;
+    case 2://second matrix
+      y = ((35 * buttonsStructAmount) + 80);
+      writeText("B", 3, 100, y, false );//design for the matrix heading
+      storeMatrixData((x + (buttonOffset * xLocation)), (y + (buttonOffset * yLocation)), &matrixB[location], text, WHITE);
+      break;
+    case 3://result matrix
+      y = 30;
+      writeText("RESULT", 2, 40, 20, false );//design for the matrix heading
+      writeText( matrixC[location].text, 1, (x + (buttonOffset * xLocation)), ( y + (buttonOffset * yLocation)), false);
+      break;
+  }
+  x = 10;
+  //draw the cell
+  tft.drawRect(x + (cellOffset * xLocation), y + (cellOffset * yLocation), cellOffset, h, BLACK);
+}
+}
+```
+
 ``` java
 ```
 ### Calculation
