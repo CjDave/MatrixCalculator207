@@ -282,6 +282,7 @@ void keypadDesign() {
   }
 }
 ```
+
 <div align="center"><strong> buttonsStructDesign(int xLocation, int yLocation, int matrixNo, int location)</strong> </div><br>
 <p>This function is used too draw a single matrix cell. It takes in the information for the row and column that it is,which matrix it is being drawn to and its location in the array. It starts by setting the cordinates and the bounds for the cell next depending I used a switch so that  (1,2,3) represents matrix A,B, And the result and depending on which number is supplied int the parameter the matrix is drawn. All cases are similar they both display a text which is the heading of the matrix, then they call the storeMatrixData to darw to store and draw the button.The difference is in their y location and which matrix is sent in the parameters. Next a rectangle is drawn around the button to give it the matrix design </p>
 
@@ -321,6 +322,58 @@ void buttonsStructDesign(int xLocation, int yLocation, int matrixNo, int locatio
 }
 ```
 
+<div align="center"><strong> textFieldDesign()</strong> </div><br>
+<p>This function is used to draw the textField  It draws a rectangle and writes the text from global varible textFieldtext that stores which keypad buttons were clicked on</p>
+
+``` java
+void textFieldDesign() {
+  tft.drawRect(195, 1, 60, 30, BLACK);
+  tft.setTextColor(BLACK, WHITE);//used for writing over charcters(similar to erasing)
+  writeText(textFieldText, 2, 195, 1, false);
+}
+```
+
+<div align="center"><strong> void calculationType(String text)</strong> </div><br>
+<p>This function is used to draw the symbol of which calculation was performed when the result is drawn. Its height is also drwn relative to the height of the first matrix</p>
+
+``` java
+void calculationType(String text) {
+  tft.setTextColor(BLACK, WHITE);//used for writing over charcters(similar to erasing)
+  writeText(text, 3, 40, ((35 * buttonsStructAmount) + 80), false);
+}
+
+```
+<div align="center"><strong> drawMatrix(int matrixNumber)</strong> </div><br>
+<p>This function is used to draw a matrix. It has two for loops that are used to signify the row and coloumn. It takes in a number that signifies which matrix is to be drawn. The number is then sent to the function buttonsStructDesign(a, i, matrixNumber, location) along with the row and cloumn of the matrix cell.</p>
+
+``` java
+//Used to draw the matrix
+void drawMatrix(int matrixNumber) {
+  int location = 0;
+  for (int a = 1; a < buttonsStructAmount + 1; a++) {
+    for (int i = 1; i < buttonsStructAmount + 1; i++) {
+      buttonsStructDesign(a, i, matrixNumber, location);
+      location++;
+    }
+  }
+}
+```
+<div align="center"><strong> void setup()</strong> </div><br>
+<p>This function is called at the start of the program. the first part sets the display with information like its orientation, id and backgroud. The second part is calling othere functions to draw the keypad and the two matrixes </p>
+
+``` java
+//setting up the display
+  uint16_t ID = tft.readID();
+  tft.begin(ID);
+  tft.setRotation(0);//potrait
+  tft.fillScreen(WHITE);//background colour
+  //calling functions that design the screen
+  keypadDesign();//draw the keypad
+  textFieldDesign();//draw the text input field
+  //draw the input matrixes
+  drawMatrix(1);
+  drawMatrix(2);
+```
 ``` java
 ```
 ### Calculation
