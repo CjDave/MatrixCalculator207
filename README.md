@@ -233,7 +233,7 @@ void writeText(String text, int textSize, int x, int y, bool isLine) {
 ```
 
 <div align="center"><strong>storeMatrixData(int x, int y, buttonsStruct* store, char * text, int colour)</strong> </div><br>
-<p>This function when called takes in parameters for drawing a text like the x and y location the text size and wheter or not the text should be on aline or not. I decided to put all this in function because to write a text takes up a number lines so this functions simplifies that</p>
+<p>This function when called takes in parameters for drawing a button and stores its data in a struct. As explained earlier we are going to store the text of a button and its location along with the button itself in a struct. In this function we are going to pass in the struct by refernce and then store the values and initialize the button using a pointer. As with the first function this is done to avoid writing the same thing everytime as the procces is used often throughout the code. </p>
 
 ``` java
 /* This function stores the data of the matrix cell and then displays it
@@ -248,6 +248,39 @@ void storeMatrixData(int x, int y, buttonsStruct* store, char * text, int colour
   //drawing the buttons
   store->button.initButton(&tft, store->x,  store->y, 55, 30, WHITE, BLACK, colour, text, 2);
   store->button.drawButton(true);
+}
+```
+<div align="center"><strong>keypadDesign()</strong> </div><br>
+<p>This function is used to draw the keypad. It starts by drawing two borders(This is not neccesary its mostly for aesthetics) and then setting the loaction for the firts button. The location would be relative to the screen that you use these numbers. The offsest variable is used for accesing the data in the array that stores the text, it works by adding the loaction of the struct to the offset to get to the keypad text. Next we loop throught the firts 10 buttons (The numerical buttons) and then call the storeMatrixData() function to store and draw the button. the same proccess is then repeated for the first 4 special buttons. For the next buttons the either one coordinates is not derived from a progression rather are unique. The store the equals button first and then we store the x coordinates of the remaining buttons and when we reapet the proccess of looping the x cordinate is gotten from the   arrray</p>
+
+``` java
+void keypadDesign() {
+  //Border design
+  tft.drawFastVLine(260, 0, 500, BLACK); //vertical line close to keypad buttons
+  tft.drawFastHLine(1, 447, 350, BLACK); //horizontal line close to keypad button
+  //button design
+  int x = 290;
+  int y = 13;
+  int offset;// used for accesing the data in keypadText[]
+  // draw the buttons 1-9
+  for (int i = 0; i < 10; i++) {
+    storeMatrixData(x, (y + (i * 30)), &keypadButtonArray[i], keypadText[i], CYAN);
+  }
+  //draw the calculations buttons (+,-,x,*,CLR)
+  for (int i = 0; i < 5; i++) {
+    offset = i + 10;//used to access the data in keypadText[]
+    storeMatrixData(x, (y + (offset * 30)), &specialButtonArray[i], keypadText[offset], GREEN);
+  }
+  //This buttons were designed with differnt coordinates on the screen
+  int temp[] = {40, 120, 210};// the location x locations of the buttons 
+  y = (y +  (15 * 30 ));
+  storeMatrixData(x, y , &specialButtonArray[5], "=", RED);// draw the equals button
+  x = 1;
+  //draw the matrix number buttons
+  for (int i = 6; i < 9; i++) {
+    offset = i + 10;
+    storeMatrixData((x + temp[i - 6]), y , &specialButtonArray[i], keypadText[offset], GREEN);
+  }
 }
 ```
 ``` java
