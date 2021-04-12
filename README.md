@@ -1,11 +1,10 @@
+
 # MatrixCalculator207 [1.0] 
 A matrix calculator using an Arduino mega and a TFT touchscreen :grinning: 
 
 # About
 
-The project is a touchscreen caclulator for matrixes. The project consists only of a tft touchscreen connected to an arduino mega. 
-The hardware is easier to set up leaving the software aspect the task demanding of the project.
-The software invloves: 
+The project is a touchscreen calculator for matrixes. The project consists only of a TFT touchscreen connected to an Arduino mega. The hardware is easier to set up leaving the software aspect the demanding task of the project. The software involves:
 * The design for the display
 * The touch function
 * The logic for calculating the matrixes
@@ -21,10 +20,10 @@ The software invloves:
 * Software (Setting up)
    * Libraries
    * Notes/Extras
-* Software (The code)
+* Software (the code)
    * Explaining the code
    * How it works
-     * Display-> [settings.h,how to,main] 
+     * Display-> [settings.h, how to, main] 
      * Touch Functions
      * Calculation
    * Notes/Extras
@@ -39,12 +38,13 @@ Even though a number of this files will be in this readme, I have still created 
 * **/LICENSE** - The license file.
 ## Preamble
 
-<p>In the project proposal, I identified my project as a modification to a normal calculator made with Arduino. I got the inspiration from https://www.allaboutcircuits.com/projects/simple-arduino-based-calculator/ who made a calcultator using arduino. However, due to the modifications there is little resemblance to his idea, hardware or code. <br>In the proposal, I offered modifications that would make the calculator perform computations like matrixes and differential calculus. The original project was going to made using an LCD screen for the output and a keypad for the input. However, after discovering that touchscreens can also be used with Arduino the project took a turn. The project was going to be a hybrid of a touchscreen and a keypad (like a blackberry) where the touchscreen could be used to display the output and also have a few buttons for special commands.
-I purcahesed the wrong keypad. The keypad I'd gotten needed soldering to be connected to the Arduino but since I lack the skills and materials to achieve that the keypad was rendered mute. The modification that resulted from this was having to design a keypad on the touch screen. This shift of workload from only getting data from the keypad to designing one on a touchscreen and also getting data from it meant that more time had to be spent coding the interface rather than the logic of the calculations. This cutback meant that the original idea of being able to perform matrix and differential calculations was reduced to only matrix calculations.  </P>
+<p>In the project proposal, I identified my project as a modification to a normal calculator made with Arduino. I got the inspiration for the project from https://www.allaboutcircuits.com/projects/simple-arduino-based-calculator/ who made a calculator using Arduino. However, due to the modifications that I made there is little resemblance to his idea, hardware or code.
+
+In the proposal, I offered modifications that would make the calculator perform computations like matrixes and differential calculus. The original project was going to be made using an LCD screen for the output and a keypad for the input. However, after discovering that touchscreens can also be used with Arduino the project took a turn. The project was going to be a hybrid of a touchscreen and a keypad (like a blackberry) where the touchscreen could be used to display the output and have a few buttons for special commands. In gathering materials for the project, I purchased the wrong keypad. The keypad purchased needed soldering to be connected to the Arduino but since I lack the skills and materials to achieve that the keypad was rendered mute. Consequently, I had to modify the project by designing a keypad on the touch screen. This shift of workload from getting data from the keypad to designing a keypad with data on a touchscreen meant that more time was spent coding the interface rather than the logic of the calculations. This cutback forced me to abandon the original idea of the calculator being able to perform matrix and differential calculations and to limit it to only matrix calculations.</P>
 
 ## Hardware
 ### Materials and Links
-There are only two materials required for the project they can be found here  
+There are only two materials required for the project. They can be found here:  
 <div align="center"><strong>From Amazon:</strong> </div><br>
 3.5" TFT LCD: https://www.amazon.ca/gp/product/B07NWH47PV/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1  <br>
 Arduino Mega: https://www.amazon.ca/gp/product/B016JWNYBE/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1  <br>
@@ -55,19 +55,19 @@ Arduino Mega: https://store.arduino.cc/usa/mega-2560-r3?queryID=undefined  <br>
 
 ### Notes/Extras
 
-* The tft LCD was designed so easily assembled with an arduino mega or Uno<br>
+* The TFT LCD was designed to easily assemble with an Arduino Mega or Uno<br>
   What this means is that all you need to do is to plug the TFT LCD into the mega or Uno and you are ready to go
-* The mega can be replaced with an Uno :https://store.arduino.cc/usa/arduino-uno-rev3?queryID=undefined 
+* The mega can be replaced with an Uno: https://store.arduino.cc/usa/arduino-uno-rev3?queryID=undefined 
 ## Software (Setting up)
 
-To run and devlop the program I used the Arduino IDE.
+To run and develop the program I used the Arduino IDE.
 You can download and install it here: https://www.arduino.cc/en/software <br>
 You could also use the online editor: https://create.arduino.cc/editor/chukwunonso_j/d243d4f5-0f02-4887-9fd4-5465835f67ca <br>
 
 ### Libraries
 
 To use the TFT touch screen you need to get two libraries <br>
-* MCUFRIEND_kbv library: https://github.com/prenticedavid/MCUFRIEND_kbv
+* MCUFRIEND_kbv libraries: https://github.com/prenticedavid/MCUFRIEND_kbv
 * Adafruit_TouchScreen library: https://github.com/adafruit/Adafruit_TouchScreen
 
 ### Installation
@@ -83,31 +83,31 @@ To do that open the Arduino library manager and then search for Adafruit_TouchSc
 
 ### Notes/Extras
 
-The documentation for the adafruit library can be found here: http://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x___button.html#a932228d686e6dec88b8b99d03fdb59a7 <br>
+The documentation for the Adafruit library can be found here: http://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x___button.html#a932228d686e6dec88b8b99d03fdb59a7 <br>
 This write up is a good reference for the MCUFRIEND_kbv library:  https://electropeak.com/learn/absolute-beginners-guide-to-tft-lcd-displays-by-arduino/ <br>
-All code was writing by me except from the function Touch_getXY(void). this was gotten from the  MCUFRIEND_kbv library examples.
+All the code was written by me except for the function Touch_getXY(void). this was gotten from the  MCUFRIEND_kbv library examples.
 ## Software (The code)
-<p> I divided the workload for the code into three parts The first part involves designing the interface, the second part is getting an input from the user and the last part is calculating the result and then displaying it back</p>
+<p> I divided the workload for the code into three parts The first part involves designing the interface, the second part is getting input from the user and the last part is calculating the result and then displaying it back</p>
 <p> The original plan was to use a physical keypad to get the input but the wrong keypad was delivered </p> 
-<p> Designing the interface involves some work arounds becaues the functions of the library used are reduced to only drawing buttons, shapes and lines. There are no text fields or inputs so I needed to create a work around for this </p>
+<p> Designing the interface involves some workarounds because the functions of the libraries used are limited to only drawing buttons, shapes and lines. There are no text fields or inputs so I needed to create a workaround for this </p>
 The project has four files/parts that are used for specific functions <br>
 
 * main(This was used for the design)<br>
 * settings (This was used to define libraries used, macros, global variables and arrays,)<br>
-* Touchscreen (This was used to get were was clicked and the actions to be perfomed)<br>
+* Touchscreen (This was used to get were was clicked on the screen and the actions to be performed after)<br>
 * logic (This was used to calculate the matrix functions)<br>
 
 
  ### How it works
-<p> -First we have buttons (from 1-9) that when clicked are added to a global vairiable(mimicking a keypad from a calculator) and is then is   displayed on a designed textfield   (we also have special buttons in the keypad) </p>  
-<p> -The is a textfield at the top that holds the global variable and displays it</p>
-<p> -There are three matrixes the first two are the matrixes that get input are displayed from the beginning </p>
+<p> -We have the first set of keypad buttons, the numerical ones (from 1-9) that when clicked are added to a global variable(mimicking a keypad from a calculator) and is then is   displayed on a designed text field   (we also have special buttons in the keypad) </p>  
+<p> -There is a text field at the top that holds the global variable and displays it</p>
+<p> -There are three matrixes. The first two are the matrixes that get input are displayed from the beginning </p>
 <p> -The third matrix holds the result and is displayed after the calculation is done</p>
-<p> -I designed the first two matrix so that each cell has a button that when clicked the text from the text field is stored in the matrix cell </p>
-<p> -When the whole matrix is filled depending on which special charcter is clicked, the calculation is done and is stored in the third   matrix.. When the result button is clicked the third matrix is drawn over the first matrixes  </p>
+<p> -I designed the first two matrixes so that each cell has a button that when clicked the text from the text field is stored in the matrix cell </p>
+<p> -When the whole matrix is filled depending on which special character is clicked, the calculation is done and is stored in the third matrix.. When the result button is clicked the third matrix is drawn over the two matrixes  </p>
 
 ### Display 
-In settings.h I included libraries for the touchscreen and I defined macros for the colors, pins and pressure<br>
+In settings.h I included libraries for the touchscreen and I defined macros for the colours, pins and pressure<br>
 
 #### settings.h
 Including libraries for using the touchscreen
@@ -124,11 +124,11 @@ Assigning variables for the pins of the touchscreen, and for the pressure
 #define XM A2  // must be an analog pin, use "An" notation!
 #define YM 7   // can be a digital pin
 #define XP 6   // can be a digital pin
-//Pressurre
+//Pressure
 #define MINPRESSURE 1
 #define MAXPRESSURE 1000
 ```
-Defining colours That would be used and fonts
+Defining colours that would be used and fonts
 ``` java
 //Colours
 #define BLACK 0x0000
@@ -177,7 +177,7 @@ buttonsStruct matrixB[] = {b11, b12, b13, b14, b21, b22, b23, b24, b31, b32, b33
 buttonsStruct matrixC[] = {c11, c12, c13, c14, c21, c22, c23, c24, c31, c32, c33, c34, c41, c42, c43, c44};
 ```
 #### How to
-There some common code that I used throughout the project
+There are some common codes that I used throughout the project
 <div align="center"><strong>Drawing Lines</strong> </div><br>
 
 ``` java
@@ -209,7 +209,7 @@ drawButton(true);//draws the button
 <div align="center"><strong>Clicking On Button</strong> </div><br>
 
 ``` java
-contains(x,y); //checks if the x and y loaction are within the bounds of the button
+contains(x,y); //checks if the x and y location are within the bounds of the button
 press();//sets wat triggers the button
 justPressed();//Checks if the button was just pressed
 ```
@@ -217,7 +217,7 @@ justPressed();//Checks if the button was just pressed
 ### Touch
 These two functions were used often throughout the code <br>
 <div align="center"><strong>writeText(String text, int textSize, int x, int y, bool isLine)</strong> </div><br>
-<p>This function when called takes in parameters for drawing a text like the x and y location the text size and wheter or not the text should be on aline or not. I decided to put all this in function because to write a text takes up a number lines so this functions simplifies that</p>
+<p>This function when called takes in parameters for drawing a text like the x and y location of the text, the text size and whether or not the text should be on a line or not. I decided to put all these in function because to write a text takes up a number lines so this functions simplifies that</p>
 
 ``` java
 //function takes in an x and y location, a string and bool and draws the text
@@ -232,7 +232,7 @@ void writeText(String text, int textSize, int x, int y, bool isLine) {
 }
 ```
 <div align="center"><strong>storeMatrixData(int x, int y, buttonsStruct* store, char * text, int colour)</strong> </div><br>
-<p>This function when called takes in parameters for drawing a button and stores its data in a struct. As explained earlier we are going to store the text of a button and its location along with the button itself in a struct. In this function we are going to pass in the struct by refernce and then store the values and initialize the button using a pointer. As with the first function this is done to avoid writing the same thing everytime as the procces is used often throughout the code. </p>
+<p>This function when called takes in parameters for drawing a button and stores its data in a struct. As explained earlier we are going to store the text of a button and its location along with the button itself in a struct. In this function we are going to pass in the struct by reference and then store the values and initialize the button using a pointer. As with the first function this is done to avoid writing the same thing every time as the proccess is used often throughout the code. </p>
 
 ``` java
 /* This function stores the data of the matrix cell and then displays it
@@ -250,7 +250,12 @@ void storeMatrixData(int x, int y, buttonsStruct* store, char * text, int colour
 }
 ```
 <div align="center"><strong>keypadDesign()</strong> </div><br>
-<p>This function is used to draw the keypad. It starts by drawing two borders(This is not neccesary its mostly for aesthetics) and then setting the loaction for the firts button. The location would be relative to the screen that you use these numbers. The offsest variable is used for accesing the data in the array that stores the text, it works by adding the loaction of the struct to the offset to get to the keypad text. Next we loop throught the firts 10 buttons (The numerical buttons) and then call the storeMatrixData() function to store and draw the button. the same proccess is then repeated for the first 4 special buttons. For the next buttons the either one coordinates is not derived from a progression rather are unique. The store the equals button first and then we store the x coordinates of the remaining buttons and when we reapet the proccess of looping the x cordinate is gotten from the   arrray</p>
+<p>This function is used to draw the keypad. It starts by drawing two borders (This is not necessary, its mostly for aesthetics) and then setting the location for the first button. The location or coordinates that you choose to use would be determined by the screen that you use. The offset variable is used for accessing the data in the array
+that stores the text, it works by adding the location of the struct to the offset to get to the keypad text.
+Next, we loop through the first 10 buttons (The numerical buttons) and then call the storeMatrixData()
+function to store and draw the button. the same process is then repeated for the first 4 special buttons.
+For the next buttons, either one of their coordinates are not derived from a progression but rather are unique. We store the equals button next and then we store the x coordinates of the remaining buttons and when we
+repeat the process of looping the x coordinate is gotten from the array.</p>
 
 ``` java
 void keypadDesign() {
@@ -284,7 +289,9 @@ void keypadDesign() {
 ```
 
 <div align="center"><strong> buttonsStructDesign(int xLocation, int yLocation, int matrixNo, int location)</strong> </div><br>
-<p>This function is used too draw a single matrix cell. It takes in the information for the row and column that it is,which matrix it is being drawn to and its location in the array. It starts by setting the cordinates and the bounds for the cell next depending I used a switch so that  (1,2,3) represents matrix A,B, And the result and depending on which number is supplied int the parameter the matrix is drawn. All cases are similar they both display a text which is the heading of the matrix, then they call the storeMatrixData to darw to store and draw the button.The difference is in their y location and which matrix is sent in the parameters. Next a rectangle is drawn around the button to give it the matrix design </p>
+<p>This function is used to draw a single matrix cell. It takes in the information for the row and column number of the cell, which matrix it is being drawn to, and its location in the array. It starts by setting the coordinates and the bounds for the cell. Next, depending on the matrix a switch used so that (1,2,3) represents matrix A, B, and the
+result. Depending on which number is supplied into the parameter the matrix is drawn. All cases are similar, they all display a text which is the heading of the matrix, then they call the storeMatrixData() to
+draw to store and draw the button. The difference is in their y location and which matrix is sent in the parameters. Next, a rectangle is drawn around the button to give it the matrix design </p>
 
 ``` java
 //Design the cell of a matrix
@@ -323,7 +330,7 @@ void buttonsStructDesign(int xLocation, int yLocation, int matrixNo, int locatio
 ```
 
 <div align="center"><strong> textFieldDesign()</strong> </div><br>
-<p>This function is used to draw the textField  It draws a rectangle and writes the text from global varible textFieldtext that stores which keypad buttons were clicked on</p>
+<p>This function is used to draw the textField  It draws a rectangle and writes the text from global variable textFieldtext that stores which keypad buttons were clicked on</p>
 
 ``` java
 void textFieldDesign() {
@@ -334,7 +341,7 @@ void textFieldDesign() {
 ```
 
 <div align="center"><strong> void calculationType(String text)</strong> </div><br>
-<p>This function is used to draw the symbol of which calculation was performed when the result is drawn. Its height is also drwn relative to the height of the first matrix</p>
+<p>This function is used to draw the symbol of which calculation was performed when the result is drawn. Its height is also drawn relative to the height of the first matrix</p>
 
 ``` java
 void calculationType(String text) {
@@ -344,7 +351,7 @@ void calculationType(String text) {
 
 ```
 <div align="center"><strong> drawMatrix(int matrixNumber)</strong> </div><br>
-<p>This function is used to draw a matrix. It has two for loops that are used to signify the row and coloumn. It takes in a number that signifies which matrix is to be drawn. The number is then sent to the function buttonsStructDesign(a, i, matrixNumber, location) along with the row and cloumn of the matrix cell.</p>
+<p>This function is used to draw a matrix. It has two for loops that are used to signify the row and colomn. It takes in a number that signifies which matrix is to be drawn. The number is then sent to the function buttonsStructDesign(a, i, matrixNumber, location) along with the row and column of the matrix cell.</p>
 
 ``` java
 //Used to draw the matrix
@@ -359,7 +366,7 @@ void drawMatrix(int matrixNumber) {
 }
 ```
 <div align="center"><strong> void setup()</strong> </div><br>
-<p>This function is called at the start of the program. the first part sets the display with information like its orientation, id and backgroud. The second part is calling othere functions to draw the keypad and the two matrixes </p>
+<p>This function is called at the start of the program. The first part sets the display with information like its orientation, id and background. The second part is calling other functions to draw the keypad and the two matrixes </p>
 
 ``` java
 //setting up the display
@@ -379,5 +386,8 @@ void drawMatrix(int matrixNumber) {
 ### Calculation
 
 ### Explaining the code
-there are less repetitive ways to do this but I have limited knowledge on Java
+there are less repetitive ways to do this but I have limited knowledge of Java
 ### Notes/Extras
+
+
+
