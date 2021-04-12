@@ -107,7 +107,7 @@ Arduino Mega: https://store.arduino.cc/usa/mega-2560-r3?queryID=undefined <br>
 
 ### Schematics
 
-  
+![20210317_144831](https://user-images.githubusercontent.com/54193310/114350872-0d0e4180-9b27-11eb-9126-d7edbb7a9a6d.jpg)
 
 ### Notes/Extras
 
@@ -878,8 +878,9 @@ void backButtonClicked() {
 
 <div align="center"><strong>void matrixCalculations(int choice)</strong> </div><br>
 
-<P> This function takes in number that signifies which calculation should be done. In this function there are two switches, the first one is used for matrix calculations while the second is used for special functions.
-</P>
+<P> This function takes in number that signifies which calculation should be done. In this function there are two switches, the first one is used for matrix calculations while the second is used for special functions. 
+<br> For the first switch a loop is done around it for the amount of the matrix cell that are present.  To perfrom the calculation the text of the corresponding matrix is gotten and converted nto an int and is then performed the calculation. After that the result is converted back into a string and stored in the result matrix. The calculation for the first three cases are addition, subtraction,  and harmadad multiplication. For the fourth multiplication(matrx multiplication) the calculation involves undersatnding a bit of matrix multiplication this can help  </P> https://www.mathsisfun.com/algebra/matrix-multiplying.html
+<P>For the first  we multiply the row  The same process of converting from </p> 
 
 ``` java
 void matrixCalculations(int choice) {
