@@ -879,8 +879,8 @@ void backButtonClicked() {
 <div align="center"><strong>void matrixCalculations(int choice)</strong> </div><br>
 
 <P> This function takes in number that signifies which calculation should be done. In this function there are two switches, the first one is used for matrix calculations while the second is used for special functions. 
-<br> For the first switch a loop is done around it for the amount of the matrix cell that are present.  To perfrom the calculation the text of the corresponding matrix is gotten and converted nto an int and is then performed the calculation. After that the result is converted back into a string and stored in the result matrix. The calculation for the first three cases are addition, subtraction,  and harmadad multiplication. For the fourth multiplication(matrx multiplication) the calculation involves undersatnding a bit of matrix multiplication this can help  </P> https://www.mathsisfun.com/algebra/matrix-multiplying.html
-<P>For the first  we multiply the row  The same process of converting from </p> 
+<br> For the first switch a loop is done around it for the amount of the matrix cell that are present.  To perfrom the calculation the text of the corresponding matrix is gotten and converted nto an int and is then performed the calculation. After that the result is converted back into a string and stored in the result matrix. The calculation for the first three cases are addition, subtraction,  and harmadad multiplication. For the fourth multiplication(matrx multiplication) the calculation involves matrix multiplication this can help</P> https://www.mathsisfun.com/algebra/matrix-multiplying.html
+<P>The second switch is used for operations like drawing the result, redrawing the matrixes cell and column </p> 
 
 ``` java
 void matrixCalculations(int choice) {
@@ -938,22 +938,26 @@ void matrixCalculations(int choice) {
   }
 }
 ```
-``` java
+<div align="center"><strong>void loop()</strong> </div><br>
 
-```
-``` java
+<P> The final part of the code is the loop. The loop continues running over and over. In the loop the function theat checks if the keypad is clicked and the function that checks if the matrix is clicked is called. The back button is also called in the loop </p> 
 
+``` java
+//this keeps on running
+void loop(void) {
+ //if the keypad and matrix are enabled
+  if (ON_OFF) {
+    keypadNumbersClicked();//checks if a keypad button was clicked on
+    matrixCellClicked();//checks if a matrix cell was clicked on
+  }
+  //enable back Button
+  else
+    backButtonClicked();
+}
 ```
 ### Updates
 Almost everything worked, the main bug is how the buttons are drawn and the + button clicked 
-``` java
 
-```
-``` java
 
-```
-### Explaining the code
-
-there are less repetitive ways to do this but I have limited knowledge of Java
 
 ### Notes/Extras
