@@ -19,12 +19,6 @@ void matrixCalculations(int choice) {
         calculationType("*");
         matrixC[n].text = String((matrixA[n].text.toInt() * matrixB[n].text.toInt()), DEC);
         break;
-        /* case 3://matrix multiplication
-           calculationType("X");
-           if ((n + 1) / (buttonsStructAmount ) == 0)
-             i++;
-           matrixC[n].text = String((matrixA[i].text.toInt() * matrixB[n + buttonsStructAmount ].text.toInt()) + (matrixA[i + 1].text.toInt() * matrixB[n + (buttonsStructAmount  * 2)].text.toInt()) + (matrixA[i + 2].text.toInt() * matrixB[n + (buttonsStructAmount  * 3)].text.toInt()) + (matrixA[i + 3].text.toInt() * matrixB[n + (buttonsStructAmount  * 4)].text.toInt()), DEC);
-        */   break;
     }
   }
   //Non computational cases
