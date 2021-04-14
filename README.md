@@ -945,32 +945,59 @@ void loop(void) {
 }
 ```
 ### How to use the calculator
-<p>You start by selecting the type of matrix you want. The three buttons at the bototom signify matrixes of 2 by 2,3 by 3, and 4 by 4 matrixes.</p> ![image](https://user-images.githubusercontent.com/54193310/114669924-b1c38700-9cbf-11eb-9830-42e5c22c8614.png)
+<p>You start by selecting the type of matrix you want. The three buttons at the bototom signify matrixes of 2 by 2,3 by 3, and 4 by 4 matrixes.</p> 
+
+![image](https://user-images.githubusercontent.com/54193310/114669924-b1c38700-9cbf-11eb-9830-42e5c22c8614.png)
+
 <p>After the matrix size is selected, you select the numbers you want from the keypad (Maximum 4)</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114670263-0cf57980-9cc0-11eb-8ac0-519d61364415.png)
+
 <p>After this the text field is updated with the number that you chose from the keypad</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114670666-7e352c80-9cc0-11eb-8b0f-f437e74d4ef9.png)
+
 <p> The next thing that you do is to select the cells that you want the text in the textfield to be applied to </p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114670880-b2105200-9cc0-11eb-97d2-e1baa6c0fac2.png)
+
 <p>You repeat this procces till both matrix are filled up, you could also use the CLR button to remove all text from the textField</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114671503-67dba080-9cc1-11eb-8678-e6ed8f1c3fa7.png)
+
 The CLR button<br>
+
 ![image](https://user-images.githubusercontent.com/54193310/114671450-5befde80-9cc1-11eb-9c0a-240a8460fb79.png)
+
 <p>When the matrixes are filled you select the type of calculation that you to perform from the keypad</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114671630-86da3280-9cc1-11eb-8f9f-95be951c5074.png)
+
 <p>A symbol would appear on the screen to signify the calculation that you selected</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114671743-a83b1e80-9cc1-11eb-9947-3f03f23beb87.png)
+
 <p>To show the result click on the equals button</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114671838-c3a62980-9cc1-11eb-9a3f-a89fc8742c0e.png)
+
 <p>The result</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114671918-d6b8f980-9cc1-11eb-91e3-937b4974bd6e.png)
+
 <p>You can click on the back button to redraw the matrix and start a new calculation</p>
+
 ![image](https://user-images.githubusercontent.com/54193310/114672028-efc1aa80-9cc1-11eb-986b-ab6c2064de46.png)
-BAck to the initial screen
+
+Back to the initial screen
+
 ![image](https://user-images.githubusercontent.com/54193310/114672160-0f58d300-9cc2-11eb-93ad-eaa2e2525c0d.png)
 
 ### Updates/Future
 <p>Almost everything worked fine. The main bugs that are present are </p>
+
 * How the matrix text are drawn. This text is drwan over the some parts borders, this changes the design of the matrix.  
+
 * How the some keypad buttons are drawn. Some buttons overlap each other. This means that those buttons that are overlapped by other buttons have a reduced are of touch
+
 <p> I plan to fix these bugs in the future. I also plan to add more functionalities to the calculator in the future</p> 
