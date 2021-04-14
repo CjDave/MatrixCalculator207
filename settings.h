@@ -24,7 +24,7 @@
 #define RED 0xF800
 #define WHITE 0xFFFF
 
-// global varibles
+// global variables
 int pixel_x, pixel_y;
 bool ON_OFF=1;
 int buttonsStructAmount = 4;
@@ -49,5 +49,3 @@ buttonsStruct c11, c12, c13, c14, c21, c22, c23, c24, c31, c32, c33, c34, c41, c
 buttonsStruct matrixA[] = {a11, a12, a13, a14, a21, a22, a23, a24, a31, a32, a33, a34, a41, a42, a43, a44};
 buttonsStruct matrixB[] = {b11, b12, b13, b14, b21, b22, b23, b24, b31, b32, b33, b34, b41, b42, b43, b44};
 buttonsStruct matrixC[] = {c11, c12, c13, c14, c21, c22, c23, c24, c31, c32, c33, c34, c41, c42, c43, c44};
-
-Adafruit_GFX_Button on_btn;

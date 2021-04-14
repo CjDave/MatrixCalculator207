@@ -6,7 +6,7 @@ void matrixCalculations(int choice) {
   {
     switch (choice) {
       //we convert both matrixes text to int, perform a calculation.
-      //After the calculation the int is then converted to a string and stored in the result matrix 
+      //After the calculation the int is then converted to a string and stored in the result matrix
       case 0://matrix addition
         calculationType("+");
         matrixC[n].text = String((matrixA[n].text.toInt() + matrixB[n].text.toInt()), DEC);
@@ -16,28 +16,35 @@ void matrixCalculations(int choice) {
         matrixC[n].text = String((matrixA[n].text.toInt() - matrixB[n].text.toInt()), DEC);
         break;
       case 2://matrix hamadad multiplication
-        calculationType("x");
+        calculationType("*");
         matrixC[n].text = String((matrixA[n].text.toInt() * matrixB[n].text.toInt()), DEC);
         break;
-      case 3://matrix multiplication
-        calculationType("*");
-        if ((n + 1) / (buttonsStructAmount ) == 0)
-          i++;
-        matrixC[n].text = String((matrixA[i].text.toInt() * matrixB[n + buttonsStructAmount ].text.toInt()) + (matrixA[i + 1].text.toInt() * matrixB[n + (buttonsStructAmount  * 2)].text.toInt()) + (matrixA[i + 1].text.toInt() * matrixB[n + (buttonsStructAmount  * 3)].text.toInt()) + (matrixA[i + 1].text.toInt() * matrixB[n + (buttonsStructAmount  * 4)].text.toInt()), DEC);
-        break;
+        /* case 3://matrix multiplication
+           calculationType("X");
+           if ((n + 1) / (buttonsStructAmount ) == 0)
+             i++;
+           matrixC[n].text = String((matrixA[i].text.toInt() * matrixB[n + buttonsStructAmount ].text.toInt()) + (matrixA[i + 1].text.toInt() * matrixB[n + (buttonsStructAmount  * 2)].text.toInt()) + (matrixA[i + 2].text.toInt() * matrixB[n + (buttonsStructAmount  * 3)].text.toInt()) + (matrixA[i + 3].text.toInt() * matrixB[n + (buttonsStructAmount  * 4)].text.toInt()), DEC);
+        */   break;
     }
   }
   //Non computational cases
   switch (choice) {
+    case 3:
+      calculationType("X");
+      for (int i = 0; i < buttonsStructAmount * buttonsStructAmount; i = i + buttonsStructAmount)
+        for (int n = 0; n < buttonsStructAmount; n++) {
+          matrixC[i + n].text = String((matrixA[i].text.toInt() * matrixB[n].text.toInt()) + (matrixA[i + 1].text.toInt() * matrixB[n + buttonsStructAmount].text.toInt()) + (matrixA[i + 2].text.toInt() * matrixB[n + (buttonsStructAmount  * 2)].text.toInt()) + (matrixA[i + 3].text.toInt() * matrixB[n + (buttonsStructAmount  * 3)].text.toInt()), DEC);
+        }
+      break;
     case 4:// used to erase numbers from the text field by darwing a rectangle over it
       tft.fillRect(195, 1, 60, 30, WHITE);
       textFieldText = "";//reset the text to nothing
       textFieldDesign();
       break;
     case 5://display result
-        ON_OFF = 0;//disable other buttons
-        drawResult();
-        drawMatrix(3);
+      ON_OFF = 0;//disable other buttons
+      drawResult();
+      drawMatrix(3);
       break;
     case 6:// redraw the matrixes as a 2x2 matrix
       buttonsStructAmount = 2;
